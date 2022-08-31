@@ -16,7 +16,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank 
     private String title;
     @Size(min = 10, message = "digite uma descrição mais completa")
     private String description;

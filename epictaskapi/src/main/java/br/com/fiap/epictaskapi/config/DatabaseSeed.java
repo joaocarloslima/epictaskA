@@ -7,18 +7,29 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import br.com.fiap.epictaskapi.model.Task;
+import br.com.fiap.epictaskapi.model.User;
 import br.com.fiap.epictaskapi.repository.TaskRepository;
+import br.com.fiap.epictaskapi.repository.UserRepository;
 
 @Configuration
 public class DatabaseSeed implements CommandLineRunner {
 
     @Autowired
-    TaskRepository repository;
+    TaskRepository taskRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public void run(String... args) throws Exception {
 
-        repository.saveAll(List.of(
+        userRepository.save(new User(
+                        "Joao", 
+                        "joao@fiap.com.br", 
+                        "$2a$12$RVc1Cze5T/Ea6BclNRVwQejWSlaXOfBow8KC3MU0eifsyjfOFWKE2"
+                    ));
+
+        taskRepository.saveAll(List.of(
             new Task("Modelar o BD", "Modelar as tabelas do banco", 100 , 0), 
             new Task("Bug", "Modelar as tabelas do banco", 50 , 0), 
             new Task("Prototipo", "Modelar as tabelas do banco", 30 , 0), 
