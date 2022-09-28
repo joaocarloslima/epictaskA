@@ -5,21 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{~/css/global.css}">
+    <link rel="stylesheet" th:href="@{~/css/range.css}">
     <title>Epic Task</title>
 </head>
 <body>
-    <h2>Cadastrar Tarefa</h2>
-    <form action="/task/new" method="POST">
-        <label for="title">título</label>
-        <input placeholder="título" type="text" name="title" id="title">
-        
-        <label for="description">descrição</label>
-        <textarea name="description" id="description"></textarea>
-        
-        <label for="score">pontos</label>
-        <input type="range" name="score" id="score">
-        
-        <input class="button" type="submit" value="cadastrar">
-    </form>
-</body>
+    <h1>Epic Task</h1>
+    
+    <main class="cards">
+        <div class="card lg">
+            <h2>Cadastrar Tarefa</h2>
+            <form class="vertical-form" action="/task/new" method="POST">
+                <label class="hide" for="title">título</label>
+                <input placeholder="título" type="text" name="title" id="title">
+                
+                <label class="hide" for="description">descrição</label>
+                <textarea placeholder="descrição da tarefa" name="description" id="description"></textarea>
+                
+                <label id="labelscore" for="score">pontos</label>
+                <input type="range" min="0" max="100" step="5" name="score" id="score">
+                
+                <div class="buttons">
+                    <a href="/task" class="button cancel">cancelar</a>
+                    <input class="button" type="submit" value="cadastrar">
+                </div>
+            </form>
+        </div>
+    </main>
+    </body>
+    <script th:src="@{~/js/script.js}"></script>
 </html>

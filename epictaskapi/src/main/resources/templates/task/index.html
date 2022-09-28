@@ -10,13 +10,26 @@
 <body>
     <h1>Epic Task</h1>
 
-    <a class="button" href="/task/new">cadastrar tarefa</a>
+    <div class="toolbar">
+        <a class="button" href="/task/new">cadastrar tarefa</a>
+    </div>
 
     <main class="cards">
-        <div class="card" th:each="task : ${tasks}">
+        <div class="card animated" th:each="task : ${tasks}">
             <h2 th:text="${task.title}"></h2>
-            <span th:text="${task.status + '%'}"></span>
-            <span th:text="${task.score + 'pts'}"></span>
+            <div class="status">
+                <svg>
+                    <circle cx="70" cy="70" r="70" />
+                    <circle cx="70" cy="70" r="70" th:style="${'stroke-dashoffset: ' + (440 - (440 * task.status) / 100) }" />
+                </svg>
+                <div class="number">
+                    <h2 th:text="${task.status + '%'}"></h2>
+                </div>
+            </div>
+            <div class="score">
+                <span class="material-icons">star</span>
+                <span th:text="${task.score + 'pts'}"></span>
+            </div>
         </div>
     </main>
 
