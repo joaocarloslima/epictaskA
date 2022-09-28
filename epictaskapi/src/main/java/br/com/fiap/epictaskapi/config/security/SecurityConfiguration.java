@@ -23,11 +23,11 @@ public class SecurityConfiguration {
                 .antMatchers(HttpMethod.GET, "/api/task/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/task").authenticated()
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
-                .anyRequest().denyAll()
+                .anyRequest().permitAll()
             .and() 
                 .csrf().disable()
-                .addFilterBefore(new AuthorizationFilter(), 
-                                UsernamePasswordAuthenticationFilter.class)
+                //.addFilterBefore(new AuthorizationFilter(), 
+                               // UsernamePasswordAuthenticationFilter.class)
         ;        
         
         return http.build();
