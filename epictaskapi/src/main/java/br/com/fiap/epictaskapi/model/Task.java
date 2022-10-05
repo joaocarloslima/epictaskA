@@ -18,10 +18,13 @@ public class Task {
 
     @NotBlank 
     private String title;
+
     @Size(min = 10, message = "digite uma descrição mais completa")
     private String description;
-    @Min(1)
+
+    @Min(1) @Max(100)
     private int score;
+
     @Min(0) @Max(100)
     private int status;
 

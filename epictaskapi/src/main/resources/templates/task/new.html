@@ -14,15 +14,36 @@
     <main class="cards">
         <div class="card lg">
             <h2>Cadastrar Tarefa</h2>
-            <form class="vertical-form" action="/task/new" method="POST">
+            <form class="vertical-form" action="/task" method="POST" th:object="${task}">
                 <label class="hide" for="title">título</label>
-                <input placeholder="título" type="text" name="title" id="title">
+                <input type="hidden" th:field="${task.id}" id="id">
+                <input 
+                    placeholder="título" 
+                    type="text" 
+                    id="title" 
+                    th:field="*{title}"
+                    th:classappend="${#fields.hasErrors('title')}?invalid"
+                >
+                <span th:errors="*{title}"></span>
                 
                 <label class="hide" for="description">descrição</label>
-                <textarea placeholder="descrição da tarefa" name="description" id="description"></textarea>
-                
+                <textarea 
+                    placeholder="descrição da tarefa" 
+                    th:field="*{description}" 
+                    id="description"
+                    th:classappend="${#fields.hasErrors('description')}?invalid"
+                ></textarea>
+                <span th:errors="*{description}"></span>
+
                 <label id="labelscore" for="score">pontos</label>
-                <input type="range" min="0" max="100" step="5" name="score" id="score">
+                <input 
+                    type="range" 
+                    min="0" 
+                    max="100" 
+                    step="5" 
+                    th:field="*{score}" 
+                    id="score"
+                >
                 
                 <div class="buttons">
                     <a href="/task" class="button cancel">cancelar</a>

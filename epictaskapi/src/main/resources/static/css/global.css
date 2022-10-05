@@ -36,6 +36,7 @@ h2{
 }
 
 a{
+    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -194,7 +195,23 @@ textarea{
     max-height: 12rem;
 }
 
+.invalid{
+    border: solid 1px var(--primary) !important;
+}
+
 #labelscore{
     margin: 1rem 0;
     font-size: 1rem;
+}
+
+.alert {
+    text-align: center;
+    background-color: var(--bg-grad);
+    padding: .5rem 2rem;
+    max-width: 350px;
+    border-radius: 5px;
+}
+
+.alert.success{
+    background-color: #00ff6684;
 }
