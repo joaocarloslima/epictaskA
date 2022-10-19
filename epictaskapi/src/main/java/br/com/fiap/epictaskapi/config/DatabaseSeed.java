@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import br.com.fiap.epictaskapi.model.Role;
 import br.com.fiap.epictaskapi.model.Task;
 import br.com.fiap.epictaskapi.model.User;
 import br.com.fiap.epictaskapi.repository.TaskRepository;
@@ -26,7 +27,16 @@ public class DatabaseSeed implements CommandLineRunner {
         userRepository.save(new User(
                         "Joao", 
                         "joao@fiap.com.br", 
-                        "$2a$12$RVc1Cze5T/Ea6BclNRVwQejWSlaXOfBow8KC3MU0eifsyjfOFWKE2"
+                        "$2a$12$RVc1Cze5T/Ea6BclNRVwQejWSlaXOfBow8KC3MU0eifsyjfOFWKE2",
+                        new Role("ROLE_USER")
+                    ));
+
+
+        userRepository.save(new User(
+                        "Maria", 
+                        "maria@fiap.com.br", 
+                        "$2a$12$RVc1Cze5T/Ea6BclNRVwQejWSlaXOfBow8KC3MU0eifsyjfOFWKE2",
+                        new Role("ROLE_ADMIN")
                     ));
 
         taskRepository.saveAll(List.of(

@@ -17,15 +17,26 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http    
-            // .httpBasic()
-            // .and()
+            .httpBasic()
+            .and()
             .authorizeHttpRequests()
                 .antMatchers(HttpMethod.GET, "/api/task/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/task").authenticated()
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
+                
+                
+                .antMatchers(HttpMethod.GET, "/task").authenticated()
+                .antMatchers(HttpMethod.POST, "/task").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/task/delete/**").hasRole("ADMIN")
+                
+
                 .anyRequest().permitAll()
+            .and()
+                .formLogin()
+                //.loginPage("/entrar")
             .and() 
                 .csrf().disable()
+
                 //.addFilterBefore(new AuthorizationFilter(), 
                                // UsernamePasswordAuthenticationFilter.class)
         ;        

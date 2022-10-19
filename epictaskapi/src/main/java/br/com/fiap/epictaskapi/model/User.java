@@ -3,8 +3,8 @@ package br.com.fiap.epictaskapi.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.ListIterator;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,8 +15,6 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import net.bytebuddy.agent.builder.AgentBuilder.PoolStrategy.Eager;
 
 
 @Entity
@@ -29,8 +27,8 @@ public class User implements UserDetails{
     private String email;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<Role> roles = new ArrayList<>();
 
     public User() {
     }
@@ -39,6 +37,13 @@ public class User implements UserDetails{
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public User(String name, String email, String password, Role role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roles.add(role);
     }
 
     public String getName() {
