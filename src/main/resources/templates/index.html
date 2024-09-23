@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EpicTask</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="container">
+
+<h1 class="title">Tarefas Pendentes</h1>
+
+<section class="grid">
+    <div class="card cell has-background-grey-dark" th:each="task: ${tasks}">
+        <header class="card-header has-background-primary">
+            <p class="card-header-title" th:text="${task.title}"></p>
+            <span class="tag is-warning" th:text="${task.score} + pts"></span>
+        </header>
+        <div class="card-content">
+            <p th:text="${task.description}"></p>
+            <progress class="progress is-primary" th:value="${task.status}" max="100"></progress>
+        </div>
+        <footer class="card-footer">
+            <button class="button is-danger is-outlined">
+                <span>Delete</span>
+                <span class="icon is-small">
+                  <i class="fas fa-times"></i>
+                </span>
+            </button>
+        </footer>
+    </div>
+</section>
+
+</body>
+</html>
