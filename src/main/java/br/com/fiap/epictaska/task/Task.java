@@ -2,10 +2,7 @@ package br.com.fiap.epictaska.task;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.util.UUID;
@@ -14,9 +11,9 @@ import java.util.UUID;
 @Data
 public class Task {
     @Id
-    UUID id;
+    UUID id = UUID.randomUUID();
 
-    @NotNull
+    @NotBlank
     String title;
 
     @Size(min = 10)

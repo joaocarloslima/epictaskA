@@ -13,7 +13,16 @@
 
 <h1 class="title">Tarefas Pendentes</h1>
 
-<section class="grid">
+<a href="/form" class="button is-primary mb-2">
+    <span class="icon is-small">
+      <i class="fas fa-plus"></i>
+    </span>
+    <span>Nova Tarefa</span>
+</a>
+
+<div class="notification is-success" th:if="${message}" th:text="${message}"></div>
+
+<section class="grid is-col-min-10">
     <div class="card cell has-background-grey-dark" th:each="task: ${tasks}">
         <header class="card-header has-background-primary">
             <p class="card-header-title" th:text="${task.title}"></p>
@@ -24,12 +33,15 @@
             <progress class="progress is-primary" th:value="${task.status}" max="100"></progress>
         </div>
         <footer class="card-footer">
-            <button class="button is-danger is-outlined">
-                <span>Delete</span>
-                <span class="icon is-small">
-                  <i class="fas fa-times"></i>
-                </span>
-            </button>
+            <form th:action="@{/task/{id}(id=${task.id})}" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button class="button is-danger is-outlined">
+                    <span>Delete</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-times"></i>
+                    </span>
+                </button>
+            </form>
         </footer>
     </div>
 </section>
