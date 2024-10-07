@@ -11,6 +11,32 @@
 </head>
 <body class="container">
 
+<nav class="navbar mb-4" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+            <h1 class="title is-1">EPIC TASK</h1>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <figure class="image">
+                    <img class="is-rounded" th:src="${avatar}" alt="avatar do usuario" />
+                </figure>
+                <div class="buttons">
+                    <span th:text="${user.attributes.name}"></span>
+                    <a href="/logout" class="button is-light">
+                        Log Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
 <h1 class="title">Tarefas Pendentes</h1>
 
 <a href="/form" class="button is-primary mb-2">

@@ -14,7 +14,7 @@
 
 <h1 class="title">Cadastrar Tarefa</h1>
 
-<form action="/task" method="post" class="is-max-tablet" th:object="${task}">
+<form th:action="@{/task}" method="post" class="is-max-tablet" th:object="${task}">
 
     <div class="field">
         <label class="label">Título</label>
