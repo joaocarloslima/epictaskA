@@ -1,7 +1,9 @@
 package br.com.fiap.epictaska.task;
 
+import br.com.fiap.epictaska.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -24,4 +26,7 @@ public class Task {
 
     @Min(1)
     int score;
+
+    @ManyToOne
+    User user;
 }

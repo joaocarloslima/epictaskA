@@ -52,6 +52,9 @@
     <div class="card cell has-background-grey-dark" th:each="task: ${tasks}">
         <header class="card-header has-background-primary">
             <p class="card-header-title" th:text="${task.title}"></p>
+            <figure class="image" th:if="${task.user}">
+                <img style="height: 50px" th:src="${task.user.avatar}" class="is-rounded" alt="avatar do usuario" />
+            </figure>
             <span class="tag is-warning" th:text="${task.score} + pts"></span>
         </header>
         <div class="card-content">
@@ -59,12 +62,53 @@
             <progress class="progress is-primary" th:value="${task.status}" max="100"></progress>
         </div>
         <footer class="card-footer">
-            <form th:action="@{/task/{id}(id=${task.id})}" method="post">
+
+            <form th:action="@{/task/{id}(id=${task.id})}" method="post" th:if="${task.user == null}">
                 <input type="hidden" name="_method" value="delete">
                 <button class="button is-danger is-outlined">
                     <span>Delete</span>
                     <span class="icon is-small">
                       <i class="fas fa-times"></i>
+                    </span>
+                </button>
+            </form>
+
+            <form th:action="@{/task/catch/{id}(id=${task.id})}" method="post" th:if="${task.user == null}">
+                <input type="hidden" name="_method" value="put">
+                <button class="button is-primary is-outlined">
+                    <span>Pegar</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-hand"></i>
+                    </span>
+                </button>
+            </form>
+
+            <form th:action="@{/task/release/{id}(id=${task.id})}" method="post" th:if="${task.user!=null && task.user.name == user.name}">
+                <input type="hidden" name="_method" value="put">
+                <button class="button is-primary is-outlined">
+                    <span>Largar</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-hand"></i>
+                    </span>
+                </button>
+            </form>
+
+            <form th:action="@{/task/dec/{id}(id=${task.id})}" method="post" th:if="${task.status > 0}">
+                <input type="hidden" name="_method" value="put">
+                <button class="button is-warning is-outlined">
+
+                    <span class="icon is-small">
+                      <i class="fas fa-minus"></i>
+                    </span>
+                </button>
+            </form>
+
+            <form th:action="@{/task/inc/{id}(id=${task.id})}" method="post">
+                <input type="hidden" name="_method" value="put">
+                <button class="button is-warning is-outlined">
+
+                    <span class="icon is-small">
+                      <i class="fas fa-plus"></i>
                     </span>
                 </button>
             </form>

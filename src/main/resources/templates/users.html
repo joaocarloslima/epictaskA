@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EpicTask</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="container">
+
+<nav class="navbar mb-4" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+            <h1 class="title is-1">EPIC TASK</h1>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <figure class="image">
+                    <img class="is-rounded" th:src="${avatar}" alt="avatar do usuario" />
+                </figure>
+                <div class="buttons">
+                    <span th:text="${user.attributes.name}"></span>
+                    <a href="/logout" class="button is-light">
+                        Log Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="panel">
+    <p class="panel-heading">Rank</p>
+    <div class="panel-block">
+        <p class="control has-icons-left">
+            <input class="input" type="text" placeholder="Search" />
+            <span class="icon is-left">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </span>
+        </p>
+    </div>
+
+    <a th:each="user : ${users}" class="panel-block is-active is-flex is-justify-content-space-between">
+        <span th:text="${user.name}"></span>
+        <span class="tag is-info" th:text="${user.score}"></span>
+    </a>
+
+
+</nav>
+
+</body>
+</html>
